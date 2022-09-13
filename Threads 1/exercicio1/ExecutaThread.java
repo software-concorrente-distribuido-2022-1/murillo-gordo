@@ -1,4 +1,4 @@
-package exercicio1.src;
+package exercicio1;
 
 public class ExecutaThread {
     public static void main(String args[]) {
