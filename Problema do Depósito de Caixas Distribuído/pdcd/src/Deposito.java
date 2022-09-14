@@ -2,34 +2,31 @@ public class Deposito
 {
 	public int itens = 0;
 	public final int capacidade = 10;
+	boolean ocupado = false;
 	
-	synchronized void retirar() throws InterruptedException
+	synchronized String retirar() throws InterruptedException
 	{
 		if(itens > 0)
 		{
 			itens--;
-			System.out.println("Caixa retirada: Sobram " + itens + " caixas");
-			notifyAll();
+			return "Caixa retirada: Sobram " + itens + " caixas";
 		}
 		else
 		{
-			System.out.println("Não há caixas para retirar");
-			wait();
+			return "Não há caixas para retirar";
 		}
 	}
 	
-	synchronized void colocar() throws InterruptedException
+	synchronized String colocar() throws InterruptedException
 	{
 		if (itens < capacidade)
 		{
 			itens++;
-			System.out.println("Caixa armazenada: Passaram a ser " + itens + " caixas");
-			notifyAll();
+			return "Caixa armazenada: Passaram a ser " + itens + " caixas";
 		}
 		else
 		{
-			System.out.println("Não há espaço para mais caixas");
-			wait();
+			return "Não há espaço para mais caixas";
 		}
 	}
 }
